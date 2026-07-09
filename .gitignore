@@ -1,0 +1,33 @@
+# Python
+backend/venv/
+__pycache__/
+*.pyc
+
+# Node
+frontend/node_modules/
+.next/
+
+# Environment files
+.env
+*.env
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# Uploads
+storage/uploads/
+
+# Vector DB
+vector_db/chroma/
