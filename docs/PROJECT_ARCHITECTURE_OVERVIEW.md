@@ -1,10 +1,10 @@
-# SentinelDocs — Project Architecture Overview
+# DocSentinel — Project Architecture Overview
 
 *A high-level summary suitable for academic evaluation, hackathon judging, and technical interviews.*
 
 ## Problem Statement
 
-Organizations accumulate large volumes of documents — contracts, invoices, scanned forms, emails — that are difficult to search, extract data from, and verify for authenticity. Keyword search fails when the exact wording isn't known; manual data entry from forms is slow and error-prone; and forged or tampered documents can slip into workflows undetected. SentinelDocs addresses all three problems as one integrated system rather than three separate tools.
+Organizations accumulate large volumes of documents — contracts, invoices, scanned forms, emails — that are difficult to search, extract data from, and verify for authenticity. Keyword search fails when the exact wording isn't known; manual data entry from forms is slow and error-prone; and forged or tampered documents can slip into workflows undetected. DocSentinel addresses all three problems as one integrated system rather than three separate tools.
 
 ## Architecture at a Glance
 

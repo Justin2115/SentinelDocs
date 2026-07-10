@@ -1,4 +1,4 @@
-# SentinelDocs — Database Schema Design
+# DocSentinel — Database Schema Design
 
 *A production-grade relational schema for a multi-module AI Document Management System.*
 
@@ -8,7 +8,7 @@
 
 ### Why PostgreSQL
 
-SentinelDocs' core data — who owns a document, what folder it's in, what role a user has, what happened to a file over time — is inherently structured and relational. PostgreSQL gives us:
+DocSentinel' core data — who owns a document, what folder it's in, what role a user has, what happened to a file over time — is inherently structured and relational. PostgreSQL gives us:
 
 - **ACID transactions**, so a document upload (file write + DB row + audit log) either fully succeeds or fully rolls back.
 - **JSONB columns** for the genuinely flexible parts (arbitrary extracted fields, OCR metadata) without abandoning a relational core for everything else.
@@ -535,7 +535,7 @@ sequenceDiagram
 | Alternative | Why it was rejected in favor of this schema |
 |---|---|
 | **MongoDB-only** | Document data (users, roles, permissions, workflow state) is highly relational with strict consistency needs (a permission change must be immediately and correctly enforced). MongoDB's eventual-consistency defaults and weaker multi-document transaction guarantees make it a worse fit for the compliance-critical parts of a DMS, even though it would suit the loosely structured `ExtractedFields`/`custom_fields` data well on its own — which is why we use JSONB *within* Postgres for that instead of a second database engine. |
-| **Single-table design** | Wide, single-table designs (common in some NoSQL access-pattern-first modeling) optimize for one predictable access pattern at the cost of flexibility. SentinelDocs needs to support many different query shapes (by folder, by uploader, by workflow status, by tag, by date range) — a normalized multi-table design with targeted indexes serves all of these without duplicating data across a giant denormalized row. |
+| **Single-table design** | Wide, single-table designs (common in some NoSQL access-pattern-first modeling) optimize for one predictable access pattern at the cost of flexibility. DocSentinel needs to support many different query shapes (by folder, by uploader, by workflow status, by tag, by date range) — a normalized multi-table design with targeted indexes serves all of these without duplicating data across a giant denormalized row. |
 | **Storing everything inside the vector DB** | Vector databases are not designed for exact-match, permission-filtered, or transactional queries. Using ChromaDB as the sole store would mean re-implementing RBAC, audit logging, and versioning on top of a system not built for it. Keeping Postgres as the relational source of truth and ChromaDB purely as a semantic-search index plays to each system's strengths. |
 
 **Trade-off accepted:** this design requires keeping two systems (Postgres, ChromaDB) in sync via `EmbeddingIndex`. The mitigation is that ChromaDB is treated as fully rebuildable — if it ever drifts out of sync, it can be regenerated from `Documents` + `OCRResults` without any data loss, because Postgres never depends on ChromaDB being correct to answer authoritative questions.

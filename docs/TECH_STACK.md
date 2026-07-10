@@ -1,4 +1,4 @@
-# SentinelDocs — Technology Stack & Decision Rationale
+# DocSentinel — Technology Stack & Decision Rationale
 
 Every technology below was chosen against four priorities: **open source, production-readiness, community support, and low barrier to team-wide adoption** (all three engineers are learning as they build).
 
@@ -13,7 +13,7 @@ Every technology below was chosen against four priorities: **open source, produc
 | Industry adoption | Very high | Very high | High, smaller in enterprise |
 | Advantages | Huge ecosystem, flexible, fast Vite dev server | Built-in SSR/routing, great for SEO-heavy sites | Simple syntax, gentle learning curve |
 | Disadvantages | More setup decisions (routing, state) | Overkill for a pure SPA talking to its own API | Smaller US enterprise footprint |
-| Verdict | **Chosen** — SentinelDocs doesn't need SSR; a decoupled SPA keeps frontend/backend independently deployable | Not needed | Smaller community for advanced AI-UI patterns |
+| Verdict | **Chosen** — DocSentinel doesn't need SSR; a decoupled SPA keeps frontend/backend independently deployable | Not needed | Smaller community for advanced AI-UI patterns |
 
 TypeScript is used over plain JavaScript for compile-time type safety on API response shapes (e.g. the ingestion contract). Tailwind CSS is used over hand-written CSS/Bootstrap for fast, consistent styling without fighting specificity conflicts.
 

@@ -1,7 +1,7 @@
-# SentinelDocs — Folder Structure
+# DocSentinel — Folder Structure
 
 ```
-SentinelDocs/
+DocSentinel/
 ├── backend/
 │   ├── app/
 │   │   ├── main.py              # FastAPI app entrypoint, router registration
