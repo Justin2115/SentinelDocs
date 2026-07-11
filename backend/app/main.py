@@ -2,19 +2,17 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
 app = FastAPI(
-    title="SentinelDocs API",
+    title="DocSentinel API",
     version="1.0.0",
-    description="Backend API for SentinelDocs Document Management System"
+    description="Backend API for the DocSentinel Document Management System"
 )
-
 
 @app.get("/")
 async def root():
     return {
-        "message": "Welcome to SentinelDocs API",
+        "message": "Welcome to DocSentinel API",
         "status": "running"
     }
-
 
 @app.get("/health")
 async def health():
@@ -22,7 +20,7 @@ async def health():
         status_code=200,
         content={
             "status": "healthy",
-            "service": "SentinelDocs Backend",
+            "service": "DocSentinel Backend",
             "version": "1.0.0"
         }
     )
